@@ -3,53 +3,57 @@
     partial class LoginForm
     {
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Panel cardPanel;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Label lblPass;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Button btnSignIn;
+        private System.Windows.Forms.LinkLabel lnkCreateAccount;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            panelCard = new Panel();
+            cardPanel = new Panel();
             lblTitle = new Label();
             lblUser = new Label();
             txtUsername = new TextBox();
             lblPass = new Label();
             txtPassword = new TextBox();
             btnSignIn = new Button();
-            lblCreateAccount = new Label();
-            panelCard.SuspendLayout();
+            lnkCreateAccount = new LinkLabel();
+            cardPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // panelCard
+            // cardPanel
             // 
-            panelCard.BackColor = Color.FromArgb(30, 30, 30);
-            panelCard.BorderStyle = BorderStyle.FixedSingle;
-            panelCard.Controls.Add(lblTitle);
-            panelCard.Controls.Add(lblUser);
-            panelCard.Controls.Add(txtUsername);
-            panelCard.Controls.Add(lblPass);
-            panelCard.Controls.Add(txtPassword);
-            panelCard.Controls.Add(btnSignIn);
-            panelCard.Controls.Add(lblCreateAccount);
-            panelCard.Location = new Point(240, 164);
-            panelCard.Name = "panelCard";
-            panelCard.Size = new Size(360, 260);
-            panelCard.TabIndex = 0;
+            cardPanel.Anchor = AnchorStyles.None;
+            cardPanel.BackColor = Color.FromArgb(30, 30, 30);
+            cardPanel.BorderStyle = BorderStyle.FixedSingle;
+            cardPanel.Controls.Add(lblTitle);
+            cardPanel.Controls.Add(lblUser);
+            cardPanel.Controls.Add(txtUsername);
+            cardPanel.Controls.Add(lblPass);
+            cardPanel.Controls.Add(txtPassword);
+            cardPanel.Controls.Add(btnSignIn);
+            cardPanel.Controls.Add(lnkCreateAccount);
+            cardPanel.Location = new Point(176, 129);
+            cardPanel.Name = "cardPanel";
+            cardPanel.Size = new Size(380, 260);
+            cardPanel.TabIndex = 0;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(110, 20);
+            lblTitle.Location = new Point(120, 18);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(146, 30);
             lblTitle.TabIndex = 0;
@@ -58,11 +62,11 @@
             // lblUser
             // 
             lblUser.AutoSize = true;
-            lblUser.Font = new Font("Segoe UI", 10F);
-            lblUser.ForeColor = Color.FromArgb(160, 160, 160);
-            lblUser.Location = new Point(40, 75);
+            lblUser.Font = new Font("Segoe UI", 9F);
+            lblUser.ForeColor = Color.LightGray;
+            lblUser.Location = new Point(36, 70);
             lblUser.Name = "lblUser";
-            lblUser.Size = new Size(71, 19);
+            lblUser.Size = new Size(60, 15);
             lblUser.TabIndex = 1;
             lblUser.Text = "Username";
             // 
@@ -70,20 +74,21 @@
             // 
             txtUsername.BackColor = Color.FromArgb(42, 42, 42);
             txtUsername.BorderStyle = BorderStyle.FixedSingle;
+            txtUsername.Font = new Font("Segoe UI", 9F);
             txtUsername.ForeColor = Color.White;
-            txtUsername.Location = new Point(40, 95);
+            txtUsername.Location = new Point(36, 92);
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(280, 23);
+            txtUsername.Size = new Size(308, 23);
             txtUsername.TabIndex = 2;
             // 
             // lblPass
             // 
             lblPass.AutoSize = true;
-            lblPass.Font = new Font("Segoe UI", 10F);
-            lblPass.ForeColor = Color.FromArgb(160, 160, 160);
-            lblPass.Location = new Point(40, 135);
+            lblPass.Font = new Font("Segoe UI", 9F);
+            lblPass.ForeColor = Color.LightGray;
+            lblPass.Location = new Point(36, 130);
             lblPass.Name = "lblPass";
-            lblPass.Size = new Size(67, 19);
+            lblPass.Size = new Size(57, 15);
             lblPass.TabIndex = 3;
             lblPass.Text = "Password";
             // 
@@ -91,10 +96,11 @@
             // 
             txtPassword.BackColor = Color.FromArgb(42, 42, 42);
             txtPassword.BorderStyle = BorderStyle.FixedSingle;
+            txtPassword.Font = new Font("Segoe UI", 9F);
             txtPassword.ForeColor = Color.White;
-            txtPassword.Location = new Point(40, 155);
+            txtPassword.Location = new Point(36, 152);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(280, 23);
+            txtPassword.Size = new Size(308, 23);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             // 
@@ -104,53 +110,40 @@
             btnSignIn.Cursor = Cursors.Hand;
             btnSignIn.FlatAppearance.BorderSize = 0;
             btnSignIn.FlatStyle = FlatStyle.Flat;
-            btnSignIn.Font = new Font("Segoe UI Semibold", 10F);
+            btnSignIn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnSignIn.ForeColor = Color.Black;
-            btnSignIn.Location = new Point(40, 195);
+            btnSignIn.Location = new Point(36, 190);
             btnSignIn.Name = "btnSignIn";
-            btnSignIn.Size = new Size(280, 35);
+            btnSignIn.Size = new Size(308, 36);
             btnSignIn.TabIndex = 5;
             btnSignIn.Text = "Sign In";
             btnSignIn.UseVisualStyleBackColor = false;
             btnSignIn.Click += btnSignIn_Click;
             // 
-            // lblCreateAccount
+            // lnkCreateAccount
             // 
-            lblCreateAccount.AutoSize = true;
-            lblCreateAccount.Cursor = Cursors.Hand;
-            lblCreateAccount.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
-            lblCreateAccount.ForeColor = Color.FromArgb(0, 230, 118);
-            lblCreateAccount.Location = new Point(110, 235);
-            lblCreateAccount.Name = "lblCreateAccount";
-            lblCreateAccount.Size = new Size(105, 15);
-            lblCreateAccount.TabIndex = 6;
-            lblCreateAccount.Text = "Create an Account";
-            lblCreateAccount.Click += lblCreateAccount_Click;
+            lnkCreateAccount.AutoSize = true;
+            lnkCreateAccount.LinkColor = Color.FromArgb(0, 200, 83);
+            lnkCreateAccount.Location = new Point(120, 234);
+            lnkCreateAccount.Name = "lnkCreateAccount";
+            lnkCreateAccount.Size = new Size(105, 15);
+            lnkCreateAccount.TabIndex = 6;
+            lnkCreateAccount.TabStop = true;
+            lnkCreateAccount.Text = "Create an Account";
+            lnkCreateAccount.Click += lblCreateAccount_Click;
             // 
             // LoginForm
             // 
             BackColor = Color.FromArgb(18, 18, 18);
-            ClientSize = new Size(853, 637);
-            Controls.Add(panelCard);
+            ClientSize = new Size(744, 571);
+            Controls.Add(cardPanel);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
-            Load += LoginForm_Load;
-            panelCard.ResumeLayout(false);
-            panelCard.PerformLayout();
+            cardPanel.ResumeLayout(false);
+            cardPanel.PerformLayout();
             ResumeLayout(false);
         }
-
-        #endregion
-
-        private Panel panelCard;
-        private Label lblTitle;
-        private TextBox txtUsername;
-        private TextBox txtPassword;
-        private Button btnSignIn;
-        private Label lblCreateAccount;
-        private Label lblUser;
-        private Label lblPass;
     }
 }
