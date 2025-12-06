@@ -1,0 +1,133 @@
+﻿namespace BANK_SYSTEM
+{
+    partial class Dashboard
+    {
+        private System.ComponentModel.IContainer components = null;
+
+        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Label lblBalance;
+        private System.Windows.Forms.Label lblAccountNumber;
+        private System.Windows.Forms.DataGridView dgvTransactions;
+        private System.Windows.Forms.Button btnDeposit;
+        private System.Windows.Forms.Button btnWithdraw;
+        private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.Button btnLogout;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.lblBalance = new System.Windows.Forms.Label();
+            this.lblAccountNumber = new System.Windows.Forms.Label();
+            this.dgvTransactions = new System.Windows.Forms.DataGridView();
+            this.btnDeposit = new System.Windows.Forms.Button();
+            this.btnWithdraw = new System.Windows.Forms.Button();
+            this.btnTransfer = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // lblWelcome
+            // 
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Location = new System.Drawing.Point(25, 20);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(38, 15);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Hello!";
+            // 
+            // lblBalance
+            // 
+            this.lblBalance.AutoSize = true;
+            this.lblBalance.Location = new System.Drawing.Point(25, 60);
+            this.lblBalance.Name = "lblBalance";
+            this.lblBalance.Size = new System.Drawing.Size(54, 15);
+            this.lblBalance.TabIndex = 1;
+            this.lblBalance.Text = "Balance:";
+            // 
+            // lblAccountNumber
+            // 
+            this.lblAccountNumber.AutoSize = true;
+            this.lblAccountNumber.Location = new System.Drawing.Point(25, 90);
+            this.lblAccountNumber.Name = "lblAccountNumber";
+            this.lblAccountNumber.Size = new System.Drawing.Size(97, 15);
+            this.lblAccountNumber.TabIndex = 2;
+            this.lblAccountNumber.Text = "Account Number";
+            // 
+            // dgvTransactions
+            // 
+            this.dgvTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTransactions.Location = new System.Drawing.Point(25, 140);
+            this.dgvTransactions.Name = "dgvTransactions";
+            this.dgvTransactions.RowTemplate.Height = 25;
+            this.dgvTransactions.Size = new System.Drawing.Size(520, 300);
+            this.dgvTransactions.TabIndex = 3;
+            // 
+            // btnDeposit
+            // 
+            this.btnDeposit.Location = new System.Drawing.Point(560, 40);
+            this.btnDeposit.Name = "btnDeposit";
+            this.btnDeposit.Size = new System.Drawing.Size(110, 30);
+            this.btnDeposit.TabIndex = 4;
+            this.btnDeposit.Text = "Deposit";
+            this.btnDeposit.UseVisualStyleBackColor = true;
+            this.btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click);
+            // 
+            // btnWithdraw
+            // 
+            this.btnWithdraw.Location = new System.Drawing.Point(560, 80);
+            this.btnWithdraw.Name = "btnWithdraw";
+            this.btnWithdraw.Size = new System.Drawing.Size(110, 30);
+            this.btnWithdraw.TabIndex = 5;
+            this.btnWithdraw.Text = "Withdraw";
+            this.btnWithdraw.UseVisualStyleBackColor = true;
+            this.btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Location = new System.Drawing.Point(560, 120);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(110, 30);
+            this.btnTransfer.TabIndex = 6;
+            this.btnTransfer.Text = "Transfer";
+            this.btnTransfer.UseVisualStyleBackColor = true;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(560, 160);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(110, 30);
+            this.btnLogout.TabIndex = 7;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // Dashboard
+            // 
+            this.ClientSize = new System.Drawing.Size(700, 480);
+            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.btnTransfer);
+            this.Controls.Add(this.btnWithdraw);
+            this.Controls.Add(this.btnDeposit);
+            this.Controls.Add(this.dgvTransactions);
+            this.Controls.Add(this.lblAccountNumber);
+            this.Controls.Add(this.lblBalance);
+            this.Controls.Add(this.lblWelcome);
+            this.Name = "Dashboard";
+            this.Text = "Dashboard";
+            this.Load += new System.EventHandler(this.Dashboard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+    }
+}
