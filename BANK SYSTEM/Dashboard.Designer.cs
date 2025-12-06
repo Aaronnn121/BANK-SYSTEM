@@ -3,12 +3,11 @@
     partial class Dashboard
     {
         private System.ComponentModel.IContainer components = null;
-
+        private Panel mainPanel;
         private Label lblWelcome;
         private Label lblBalance;
         private Label lblAccountNumber;
         private DataGridView dgvTransactions;
-
         private Button btnDeposit;
         private Button btnWithdraw;
         private Button btnTransfer;
@@ -16,16 +15,16 @@
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && components != null)
-            {
-                components.Dispose();
-            }
+            if (disposing && components != null) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            mainPanel = new Panel();
             lblWelcome = new Label();
             lblBalance = new Label();
             lblAccountNumber = new Label();
@@ -34,130 +33,148 @@
             btnWithdraw = new Button();
             btnTransfer = new Button();
             btnLogout = new Button();
-
+            mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransactions).BeginInit();
             SuspendLayout();
-
-            // --------- FORM GENERAL STYLE ----------
-            this.BackColor = Color.White;
-            this.Font = new Font("Segoe UI", 11F);
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.ClientSize = new Size(900, 550);
-
-            // --------- WELCOME LABEL ----------
+            // 
+            // mainPanel
+            // 
+            mainPanel.BackColor = Color.FromArgb(30, 30, 30);
+            mainPanel.BorderStyle = BorderStyle.FixedSingle;
+            mainPanel.Controls.Add(lblWelcome);
+            mainPanel.Controls.Add(lblBalance);
+            mainPanel.Controls.Add(lblAccountNumber);
+            mainPanel.Controls.Add(dgvTransactions);
+            mainPanel.Controls.Add(btnDeposit);
+            mainPanel.Controls.Add(btnWithdraw);
+            mainPanel.Controls.Add(btnTransfer);
+            mainPanel.Controls.Add(btnLogout);
+            mainPanel.Location = new Point(68, 81);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(1075, 636);
+            mainPanel.TabIndex = 0;
+            // 
+            // lblWelcome
+            // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblWelcome.Location = new Point(30, 30);
-            lblWelcome.Text = "Welcome,";
-
-            // --------- BALANCE ----------
+            lblWelcome.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblWelcome.ForeColor = Color.White;
+            lblWelcome.Location = new Point(348, 21);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(164, 32);
+            lblWelcome.TabIndex = 0;
+            lblWelcome.Text = "DASHBOARD";
+            // 
+            // lblBalance
+            // 
             lblBalance.AutoSize = true;
-            lblBalance.Font = new Font("Segoe UI", 12F, FontStyle.Regular);
-            lblBalance.Location = new Point(30, 90);
-            lblBalance.Text = "Balance:";
-
-            // --------- ACCOUNT NUMBER ----------
+            lblBalance.Font = new Font("Segoe UI", 12F);
+            lblBalance.ForeColor = Color.White;
+            lblBalance.Location = new Point(40, 80);
+            lblBalance.Name = "lblBalance";
+            lblBalance.Size = new Size(0, 21);
+            lblBalance.TabIndex = 1;
+            // 
+            // lblAccountNumber
+            // 
             lblAccountNumber.AutoSize = true;
-            lblAccountNumber.Font = new Font("Segoe UI", 12F, FontStyle.Regular);
-            lblAccountNumber.Location = new Point(30, 130);
-            lblAccountNumber.Text = "Account No:";
-
-            // --------- TRANSACTIONS GRID ----------
-            dgvTransactions.Location = new Point(30, 180);
-            dgvTransactions.Size = new Size(620, 330);
-            dgvTransactions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvTransactions.ReadOnly = true;
-            dgvTransactions.ColumnHeadersHeight = 35;
-
-            // --------- BUTTON STYLE ----------
-            Size btnSize = new Size(150, 40);
-            Font btnFont = new Font("Segoe UI", 10F, FontStyle.Bold);
-
-            // --------- DEPOSIT BUTTON ----------
-            btnDeposit.Text = "Deposit";
-            btnDeposit.Location = new Point(680, 180);
-            btnDeposit.Size = btnSize;
-            btnDeposit.Font = btnFont;
-            btnDeposit.BackColor = Color.LightSkyBlue;
+            lblAccountNumber.Font = new Font("Segoe UI", 12F);
+            lblAccountNumber.ForeColor = Color.White;
+            lblAccountNumber.Location = new Point(40, 120);
+            lblAccountNumber.Name = "lblAccountNumber";
+            lblAccountNumber.Size = new Size(0, 21);
+            lblAccountNumber.TabIndex = 2;
+            // 
+            // dgvTransactions
+            // 
+            dgvTransactions.BackgroundColor = Color.FromArgb(42, 42, 42);
+            dgvTransactions.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(61, 61, 61);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dgvTransactions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(42, 42, 42);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvTransactions.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvTransactions.EnableHeadersVisualStyles = false;
+            dgvTransactions.Location = new Point(46, 120);
+            dgvTransactions.Name = "dgvTransactions";
+            dgvTransactions.Size = new Size(858, 444);
+            dgvTransactions.TabIndex = 3;
+            // 
+            // btnDeposit
+            // 
+            btnDeposit.BackColor = Color.FromArgb(0, 230, 118);
             btnDeposit.FlatStyle = FlatStyle.Flat;
-
-            // --------- WITHDRAW BUTTON ----------
-            btnWithdraw.Text = "Withdraw";
-            btnWithdraw.Location = new Point(680, 230);
-            btnWithdraw.Size = btnSize;
-            btnWithdraw.Font = btnFont;
-            btnWithdraw.BackColor = Color.LightGreen;
+            btnDeposit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnDeposit.ForeColor = Color.Black;
+            btnDeposit.Location = new Point(910, 120);
+            btnDeposit.Name = "btnDeposit";
+            btnDeposit.Size = new Size(150, 45);
+            btnDeposit.TabIndex = 4;
+            btnDeposit.Text = "Deposit";
+            btnDeposit.UseVisualStyleBackColor = false;
+            btnDeposit.Click += btnDeposit_Click;
+            // 
+            // btnWithdraw
+            // 
+            btnWithdraw.BackColor = Color.FromArgb(0, 230, 118);
             btnWithdraw.FlatStyle = FlatStyle.Flat;
-
-            // --------- TRANSFER BUTTON ----------
-            btnTransfer.Text = "Transfer";
-            btnTransfer.Location = new Point(680, 280);
-            btnTransfer.Size = btnSize;
-            btnTransfer.Font = btnFont;
-            btnTransfer.BackColor = Color.Khaki;
+            btnWithdraw.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnWithdraw.ForeColor = Color.Black;
+            btnWithdraw.Location = new Point(910, 180);
+            btnWithdraw.Name = "btnWithdraw";
+            btnWithdraw.Size = new Size(150, 45);
+            btnWithdraw.TabIndex = 5;
+            btnWithdraw.Text = "Withdraw";
+            btnWithdraw.UseVisualStyleBackColor = false;
+            btnWithdraw.Click += btnWithdraw_Click;
+            // 
+            // btnTransfer
+            // 
+            btnTransfer.BackColor = Color.FromArgb(0, 230, 118);
             btnTransfer.FlatStyle = FlatStyle.Flat;
-
-            // --------- LOGOUT BUTTON ----------
-            btnLogout.Text = "Logout";
-            btnLogout.Location = new Point(680, 330);
-            btnLogout.Size = btnSize;
-            btnLogout.Font = btnFont;
-            btnLogout.BackColor = Color.Salmon;
+            btnTransfer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnTransfer.ForeColor = Color.Black;
+            btnTransfer.Location = new Point(910, 240);
+            btnTransfer.Name = "btnTransfer";
+            btnTransfer.Size = new Size(150, 45);
+            btnTransfer.TabIndex = 6;
+            btnTransfer.Text = "Transfer";
+            btnTransfer.UseVisualStyleBackColor = false;
+            btnTransfer.Click += btnTransfer_Click;
+            // 
+            // btnLogout
+            // 
+            btnLogout.BackColor = Color.DarkRed;
             btnLogout.FlatStyle = FlatStyle.Flat;
-
-            // ------- ADD CONTROLS TO FORM -------
-            Controls.Add(lblWelcome);
-            Controls.Add(lblBalance);
-            Controls.Add(lblAccountNumber);
-            Controls.Add(dgvTransactions);
-
-            Controls.Add(btnDeposit);
-            Controls.Add(btnWithdraw);
-            Controls.Add(btnTransfer);
-            Controls.Add(btnLogout);
-
-            this.Text = "Dashboard";
-            Load += Dashboard_Load_1;
-
+            btnLogout.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(910, 572);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(150, 45);
+            btnLogout.TabIndex = 7;
+            btnLogout.Text = "Logout";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // Dashboard
+            // 
+            BackColor = Color.FromArgb(18, 18, 18);
+            ClientSize = new Size(1180, 767);
+            Controls.Add(mainPanel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Name = "Dashboard";
+            StartPosition = FormStartPosition.CenterScreen;
+            mainPanel.ResumeLayout(false);
+            mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransactions).EndInit();
             ResumeLayout(false);
-            PerformLayout();
-            // deposit
-            btnDeposit.Text = "Deposit";
-            btnDeposit.Location = new Point(680, 180);
-            btnDeposit.Size = btnSize;
-            btnDeposit.Font = btnFont;
-            btnDeposit.BackColor = Color.LightSkyBlue;
-            btnDeposit.FlatStyle = FlatStyle.Flat;
-            btnDeposit.Click += new System.EventHandler(this.btnDeposit_Click);
-
-            // withdraw
-            btnWithdraw.Text = "Withdraw";
-            btnWithdraw.Location = new Point(680, 230);
-            btnWithdraw.Size = btnSize;
-            btnWithdraw.Font = btnFont;
-            btnWithdraw.BackColor = Color.LightGreen;
-            btnWithdraw.FlatStyle = FlatStyle.Flat;
-            btnWithdraw.Click += new System.EventHandler(this.btnWithdraw_Click);
-
-            // transfer
-            btnTransfer.Text = "Transfer";
-            btnTransfer.Location = new Point(680, 280);
-            btnTransfer.Size = btnSize;
-            btnTransfer.Font = btnFont;
-            btnTransfer.BackColor = Color.Khaki;
-            btnTransfer.FlatStyle = FlatStyle.Flat;
-            btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
-
-            // logout
-            btnLogout.Text = "Logout";
-            btnLogout.Location = new Point(680, 330);
-            btnLogout.Size = btnSize;
-            btnLogout.Font = btnFont;
-            btnLogout.BackColor = Color.Salmon;
-            btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-
         }
         #endregion
     }
