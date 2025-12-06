@@ -9,13 +9,13 @@ namespace BANK_SYSTEM
         private readonly DbHelper _db;
         private readonly AccountRepository _accRepo;
         private readonly UserRepository _userRepo;
-        private int _userId;
-        private Account _fromAccount;
-
-        private Label lblFromAcc;
-        private TextBox txtRecipientUsername;
+        private readonly int _userId;
+        private TextBox txtReceiver;
         private TextBox txtAmount;
         private Button btnSend;
+        private Button btnCancel;
+        private Label lblFrom;
+        private Account _fromAccount;
 
         public SendMoneyForm(int userId)
         {
@@ -26,153 +26,138 @@ namespace BANK_SYSTEM
             _accRepo = new AccountRepository(_db);
             _userRepo = new UserRepository(_db);
 
-            // Load sender account
             _fromAccount = _accRepo.GetByUserId(_userId);
 
             if (_fromAccount == null)
             {
-                MessageBox.Show("Your account could not be loaded.");
+                MessageBox.Show("Account not found.");
                 Close();
                 return;
             }
 
-            lblFromAcc.Text = $"From Account: {_fromAccount.account_number}\nBalance: {_fromAccount.balance:N2}";
-        }
-
-        private void InitializeComponent()
-        {
-            lblFromAcc = new Label();
-            txtRecipientUsername = new TextBox();
-            txtAmount = new TextBox();
-            btnSend = new Button();
-            SuspendLayout();
-            // 
-            // lblFromAcc
-            // 
-            lblFromAcc.AutoSize = true;
-            lblFromAcc.Font = new Font("Segoe UI", 10F);
-            lblFromAcc.Location = new Point(20, 20);
-            lblFromAcc.Name = "lblFromAcc";
-            lblFromAcc.Size = new Size(0, 19);
-            lblFromAcc.TabIndex = 0;
-            // 
-            // txtRecipientUsername
-            // 
-            txtRecipientUsername.Location = new Point(20, 70);
-            txtRecipientUsername.Name = "txtRecipientUsername";
-            txtRecipientUsername.PlaceholderText = "Recipient Username";
-            txtRecipientUsername.Size = new Size(250, 23);
-            txtRecipientUsername.TabIndex = 1;
-            // 
-            // txtAmount
-            // 
-            txtAmount.Location = new Point(20, 110);
-            txtAmount.Name = "txtAmount";
-            txtAmount.PlaceholderText = "Amount";
-            txtAmount.Size = new Size(250, 23);
-            txtAmount.TabIndex = 2;
-            // 
-            // btnSend
-            // 
-            btnSend.Location = new Point(20, 150);
-            btnSend.Name = "btnSend";
-            btnSend.Size = new Size(120, 30);
-            btnSend.TabIndex = 3;
-            btnSend.Text = "Send Money";
-            btnSend.Click += btnSend_Click;
-            // 
-            // SendMoneyForm
-            // 
-            ClientSize = new Size(380, 220);
-            Controls.Add(lblFromAcc);
-            Controls.Add(txtRecipientUsername);
-            Controls.Add(txtAmount);
-            Controls.Add(btnSend);
-            Name = "SendMoneyForm";
-            Text = "Send Money";
-            Load += SendMoneyForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            lblFrom.Text = $"From Account: {_fromAccount.account_number}\nBalance: {_fromAccount.balance:N2}";
         }
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-            string recipientUsername = txtRecipientUsername.Text.Trim();
+            string receiverUser = txtReceiver.Text.Trim();
 
-            if (recipientUsername == "")
+            var targetUser = _userRepo.GetByUsername(receiverUser);
+
+            if (targetUser == null)
             {
-                MessageBox.Show("Enter recipient username.");
+                MessageBox.Show("Recipient not found.");
                 return;
             }
+
+            var toAccount = _accRepo.GetByUserId(targetUser.user_id);
 
             if (!double.TryParse(txtAmount.Text.Trim(), out double amount) || amount <= 0)
             {
-                MessageBox.Show("Enter a valid amount.");
-                return;
-            }
-
-            // Find recipient user
-            var recipientUser = _userRepo.GetByUsername(recipientUsername);
-
-            if (recipientUser == null)
-            {
-                MessageBox.Show("Recipient username not found.");
-                return;
-            }
-
-            // Get recipient account
-            var toAccount = _accRepo.GetByUserId(recipientUser.user_id);
-
-            if (toAccount == null)
-            {
-                MessageBox.Show("Recipient account not found.");
+                MessageBox.Show("Invalid amount.");
                 return;
             }
 
             if (_fromAccount.balance < amount)
             {
-                MessageBox.Show("Insufficient funds.");
+                MessageBox.Show("Insufficient balance.");
                 return;
             }
 
-            // TRANSFER
             _accRepo.ExecuteInTransaction(conn =>
             {
                 _fromAccount.balance -= amount;
-                toAccount.balance += amount;
-
                 conn.Update(_fromAccount);
+
+                toAccount.balance += amount;
                 conn.Update(toAccount);
 
-                // Sender transaction
                 conn.Insert(new TransactionEntry
                 {
                     user_id = _userId,
                     account_id = _fromAccount.account_id,
                     transaction_date = DateTime.UtcNow.ToString("o"),
-                    transaction_type = "debit",
+                    transaction_type = "transfer_out",
                     amount = amount,
-                    description = $"Sent to {recipientUsername}"
+                    description = $"Transfer to {receiverUser}"
                 });
 
-                // Receiver transaction
                 conn.Insert(new TransactionEntry
                 {
-                    user_id = recipientUser.user_id,
+                    user_id = targetUser.user_id,
                     account_id = toAccount.account_id,
                     transaction_date = DateTime.UtcNow.ToString("o"),
-                    transaction_type = "credit",
+                    transaction_type = "transfer_in",
                     amount = amount,
                     description = $"Received from {_fromAccount.account_number}"
                 });
             });
 
-            MessageBox.Show("Money sent successfully!");
+            MessageBox.Show("Transfer completed!");
             Close();
         }
 
-        private void SendMoneyForm_Load(object sender, EventArgs e)
+        private void InitializeComponent()
         {
+            txtReceiver = new TextBox();
+            txtAmount = new TextBox();
+            btnSend = new Button();
+            btnCancel = new Button();
+            lblFrom = new Label();
+            SuspendLayout();
+            // 
+            // txtReceiver
+            // 
+            txtReceiver.Location = new Point(121, 82);
+            txtReceiver.Name = "txtReceiver";
+            txtReceiver.Size = new Size(100, 23);
+            txtReceiver.TabIndex = 0;
+            // 
+            // txtAmount
+            // 
+            txtAmount.Location = new Point(121, 129);
+            txtAmount.Name = "txtAmount";
+            txtAmount.Size = new Size(100, 23);
+            txtAmount.TabIndex = 1;
+            // 
+            // btnSend
+            // 
+            btnSend.Location = new Point(121, 209);
+            btnSend.Name = "btnSend";
+            btnSend.Size = new Size(75, 23);
+            btnSend.TabIndex = 2;
+            btnSend.Text = "Send";
+            btnSend.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(202, 209);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 3;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // lblFrom
+            // 
+            lblFrom.AutoSize = true;
+            lblFrom.Location = new Point(122, 42);
+            lblFrom.Name = "lblFrom";
+            lblFrom.Size = new Size(38, 15);
+            lblFrom.TabIndex = 4;
+            lblFrom.Text = "label1";
+            // 
+            // SendMoneyForm
+            // 
+            ClientSize = new Size(629, 506);
+            Controls.Add(lblFrom);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSend);
+            Controls.Add(txtAmount);
+            Controls.Add(txtReceiver);
+            Name = "SendMoneyForm";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
     }
